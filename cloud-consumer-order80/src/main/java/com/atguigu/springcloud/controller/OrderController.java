@@ -8,12 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
+
 @Slf4j
 @RestController
 @RequestMapping("/consumer")
 public class OrderController {
 
-    public static final String PAYMENT_URL = "http://localhost:8001";
+    public static final String PAYMENT_URL = "http://CLOUD-PAYMENT-SERVICE";
 
     @Autowired
     private RestTemplate restTemplate;
@@ -32,6 +34,13 @@ public class OrderController {
         return restTemplate.getForObject(PAYMENT_URL + "/payment/get/" + id, CommonResult.class);
     }
 
+    // 测试@EnableDiscoveryClient ,消费端可以调用服务发现
+    @GetMapping("/discovery")
+    public Object discovery() {
+
+        return restTemplate.getForObject(PAYMENT_URL + "/payment/discovery", Object.class);
+
+    }
 
 }
 
