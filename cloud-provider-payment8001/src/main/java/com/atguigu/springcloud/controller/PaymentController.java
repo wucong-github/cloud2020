@@ -26,7 +26,6 @@ public class PaymentController {
     @Value("${server.port}")
     private String port;
 
-
     @PostMapping("/create")
     public CommonResult creart(@RequestBody Payment payment) {
 
@@ -58,7 +57,7 @@ public class PaymentController {
     @GetMapping("/discovery")
     public Object discovery() {
 
-        // getServices() 取出注册中心的所有服务名称
+        // getServices()     git取出注册中心的所有服务名称
         List<String> list = client.getServices();
         list.forEach(System.out::println);
 

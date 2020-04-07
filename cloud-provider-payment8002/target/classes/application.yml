@@ -9,12 +9,12 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     # mysql驱动类
     driver-class-name: com.mysql.cj.jdbc.Driver
-    #url: jdbc:mysql://192.168.198.134:3306/clouddb01?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8
-    #username: root
-    #password: 123456zc
-    url: jdbc:mysql://localhost:3306/cloudDB02?serverTimezone=GMT%2B8&characterEncoding=utf8&useSSL=false
+    url: jdbc:mysql://192.168.198.134:3306/clouddb01?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8
     username: root
-    password: root
+    password: 123456zc
+    #url: jdbc:mysql://localhost:3306/cloudDB02?serverTimezone=GMT%2B8&characterEncoding=utf8&useSSL=false
+    #username: root
+    #password: root
 
 
 eureka:
@@ -36,8 +36,8 @@ info:
   company:
     name: www.atguigu.com
   build:
-    artifactId: cloud-provider-payment8002
-    version: 1.0-SNAPSHOT
+    artifactId: $project.artifactId$
+    version: $project.version$
 
 
 mybatis:
