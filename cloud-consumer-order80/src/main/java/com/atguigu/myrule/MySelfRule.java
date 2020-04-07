@@ -8,8 +8,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MySelfRule {
 
-    @Bean
+  /*  @Bean
     public IRule getIRule(){
         return new RandomRule();
-    }
+    }*/
 }

@@ -12,15 +12,15 @@ import org.springframework.web.client.RestTemplate;
 public class ApplicationContextConfig {
 
     @Bean
-    @LoadBalanced
+     // @LoadBalanced
     public RestTemplate getRestTemplate() {
         return new RestTemplate();
     }
 
 
-   @Bean
+   /* @Bean
     public IRule myRule(){
-        return new RoundRobinRule();  // 用我们重新选择的随机算法，替代轮询
-    }
+        return new RoundRobinRule();  // 用我们重新选择的随机算法，替代轮询 RandomRule()
+    }*/
 
 }

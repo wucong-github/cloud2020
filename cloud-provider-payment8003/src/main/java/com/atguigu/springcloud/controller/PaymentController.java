@@ -5,6 +5,7 @@ import com.atguigu.springcloud.entities.Payment;
 import com.atguigu.springcloud.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,9 @@ public class PaymentController {
     @Autowired
     private DiscoveryClient client;
 
+    @Value("${server.port}")
+    private String port;
+
     @PostMapping("/create")
     public CommonResult creart(@RequestBody Payment payment) {
 
@@ -29,9 +33,9 @@ public class PaymentController {
         log.info("****插入结果：" + result);
         System.out.println("12334");
         if (result > 0) {
-            return new CommonResult(200, "插入数据库成功8003", result);
+            return new CommonResult(200, "插入数据库成功" + port, result);
         } else {
-            return new CommonResult(404, "插入数据库失败8003", null);
+            return new CommonResult(404, "插入数据库失败" + port, null);
         }
     }
 
@@ -69,6 +73,13 @@ public class PaymentController {
         }
         return this.client;
 
+    }
+
+
+    @GetMapping("/lb")
+    public String getService() {
+        //返回端口号
+        return port;
     }
 
 }

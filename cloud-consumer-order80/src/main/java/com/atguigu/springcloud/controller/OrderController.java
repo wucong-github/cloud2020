@@ -3,12 +3,19 @@ package com.atguigu.springcloud.controller;
 
 import com.atguigu.springcloud.entities.CommonResult;
 import com.atguigu.springcloud.entities.Payment;
+import com.atguigu.springcloud.lb.LoadBalancer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import java.net.URI;
 import java.util.List;
 
 @Slf4j
@@ -20,6 +27,12 @@ public class OrderController {
 
     @Autowired
     private RestTemplate restTemplate;
+
+    @Autowired
+    private LoadBalancer loadBalancer;
+
+    @Autowired
+    private DiscoveryClient client;
 
     @GetMapping("/create")
     public CommonResult<Payment> creart(Payment payment) {
@@ -68,6 +81,31 @@ public class OrderController {
         return entity.getBody();
     }
 
+    @GetMapping("/lb")
+    public String getpaumentLB() {
+
+        // 从 Eureka 获取名称为 "CLOUD-PAYMENT-SERVICE" 的服务实例集合
+        List<ServiceInstance> srvList = client.getInstances("CLOUD-PAYMENT-SERVICE");
+        // 判空
+        if (null == srvList || srvList.size() <= 0) {
+            return null;
+        }
+
+        /*
+         * 将服务器实例集合传入instance（）
+         * 通过自定义算法，
+         * 会返回当前集合中的一个服务器实例
+         * 然后用这个服务器实例的信息（地址和端口号），
+         * 构建访问地址，去访问这台服务器
+         */
+        ServiceInstance instance = loadBalancer.instance(srvList);
+        URI uri = instance.getUri();
+        System.out.println(uri.toString());
+        // 轮询 访问
+        return restTemplate.getForObject(uri + "/payment/lb", String.class);
+
+
+    }
 
 }
 
