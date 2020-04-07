@@ -14,15 +14,18 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 @Component
 public class myLB implements LoadBalancer {
+
     /**
-     *  高并发的情况下，i++无法保证原子性，往往会出现问题，所以引入AtomicInteger类。
-     *  current 是原子整数 ，首先设置为0
-     *  然后index 的值是 current+1 所以是1 代表第一次访问
-     *  compareAndSet（）方法是比较 current 和 next 是否相同
-     *  如果不同，则更新atomicInteger的值 ，并且返回true
-     *  这里我们使用 ！ 非，终止循环
+     * 高并发的情况下，i++无法保证原子性，往往会出现问题，所以引入AtomicInteger类。
      *
+     * current 是原子整数 ，首先设置为0
+     * 然后index 的值是 current+1 所以是1 代表第一次访问
+     * compareAndSet（）方法是比较 并 更新
+     * 比较 AtomicInteger的值 和 current 是否相等 ，如果相等就更新（说明线程是安全的，数据没有被其他线程修改）
+     * 将AtomicInteger的值 更新为 next 并且返回 true
+     * 这里我们使用 ！ 非，终止循环
      */
+
     private AtomicInteger atomicInteger = new AtomicInteger(0);
 
      public final int getAndIncrement(){

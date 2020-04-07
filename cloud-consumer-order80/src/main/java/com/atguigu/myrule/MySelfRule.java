@@ -10,6 +10,6 @@ public class MySelfRule {
 
   /*  @Bean
     public IRule getIRule(){
-        return new RandomRule();
+        return new RoundRobinRule_ZHF();//自定义负载均衡方式
     }*/
 }
