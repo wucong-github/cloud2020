@@ -18,12 +18,13 @@ public class myLB implements LoadBalancer {
     /**
      * 高并发的情况下，i++无法保证原子性，往往会出现问题，所以引入AtomicInteger类。
      *
-     * current 是原子整数 ，首先设置为0
+     * atomicInteger 是原子整数 ，首先设置为0
      * 然后index 的值是 current+1 所以是1 代表第一次访问
      * compareAndSet（）方法是比较 并 更新
      * 比较 AtomicInteger的值 和 current 是否相等 ，如果相等就更新（说明线程是安全的，数据没有被其他线程修改）
      * 将AtomicInteger的值 更新为 next 并且返回 true
-     * 这里我们使用 ！ 非，终止循环
+     * 更新成功后
+     * 这里我们使用 ！ 非，终止循环，得到我们想要的 next
      */
 
     private AtomicInteger atomicInteger = new AtomicInteger(0);
@@ -49,6 +50,8 @@ public class myLB implements LoadBalancer {
     public ServiceInstance instance(List<ServiceInstance> serviceInstances) {
         /*
          *  访问次数 对 服务器数量 取余
+         *  得到服务器下标
+         *
          */
         int index = getAndIncrement() % serviceInstances.size();
 
