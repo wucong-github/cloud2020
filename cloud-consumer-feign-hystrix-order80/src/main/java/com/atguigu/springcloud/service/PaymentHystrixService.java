@@ -1,7 +1,5 @@
 package com.atguigu.springcloud.service;
 
-import com.atguigu.springcloud.entities.CommonResult;
-import com.atguigu.springcloud.entities.Payment;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,11 +13,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @Component
 @FeignClient(value = "CLOUD-PAYMENT-SERVICE")
-public interface PaymentFeignService {
+public interface PaymentHystrixService {
 
-    @GetMapping("payment/get/{id}")
-    CommonResult<Payment> getPaymentById(@PathVariable("id") Long id);
+    @GetMapping("/hystrix/ok/{id}")
+    String paymentInfo_OK(@PathVariable("id") Integer id);
 
-    @GetMapping(value = "/payment/feign/timeout")
-    String paymentFeignTimeout() ;
+    @GetMapping("/hystrix/out/{id}")
+    String paymenInfo_TimeOut(@PathVariable("id") Integer id);
 }
