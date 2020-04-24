@@ -44,7 +44,7 @@ public class OrderController {
     // 80端口的服务降级方法，
     public String paument_Global_FallbackMethod(@PathVariable("id") Integer id) {
 
-        return "消费者80 出错Global系统繁忙GlobalGlobalGlobal，请稍后再试 ";
+        return "消费者80 出错   Global系统繁忙 ，请稍后再试 ";
     }
 
     // 80端口的默认服务降级方法，

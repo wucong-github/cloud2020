@@ -41,4 +41,17 @@ public class PaymentController {
         return "Global系统繁忙，请稍后再试 ";
     }
 
+    /**
+     *========== 服务熔断 ========
+     */
+    @GetMapping("/circuit/{id}")
+    public String paymentCircuitBreaker(@PathVariable("id") Integer id) {
+        String result = service.paymentCircuitBreaker(id);
+        log.info("*****result: " + result);
+        return result;
+
+    }
+
+
+
 }
