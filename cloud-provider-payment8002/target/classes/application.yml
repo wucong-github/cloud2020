@@ -36,8 +36,8 @@ info:
   company:
     name: www.atguigu.com
   build:
-    artifactId: $project.artifactId$
-    version: $project.version$
+    artifactId: cloud-provider-payment8002
+    version: 1.0-SNAPSHOT
 
 
 mybatis:
