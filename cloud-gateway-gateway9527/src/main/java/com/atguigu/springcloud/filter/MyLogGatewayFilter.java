@@ -42,7 +42,6 @@ public class MyLogGatewayFilter implements GlobalFilter, Ordered {
         return chain.filter(exchange);
     }
 
-
     @Override public int getOrder() {
 
         // 数字越小，优先级越高

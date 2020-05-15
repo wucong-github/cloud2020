@@ -4,18 +4,17 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
+
 /**
- * @EnableEurekaClient 开启erueka 客户端
+ * @author 吴聪
+ * @Date 2020/5/11 0011
+ * @since 1.0.0
  */
-@EnableEurekaClient
 @SpringBootApplication
-public class GatewayMain9527 {
-
+@EnableEurekaClient
+public class ConfigClientMain3355 {
     public static void main(String[] args) {
-        SpringApplication.run(GatewayMain9527.class, args);
+        SpringApplication.run(ConfigClientMain3355.class, args);
+
     }
-
-
-
 }
-
