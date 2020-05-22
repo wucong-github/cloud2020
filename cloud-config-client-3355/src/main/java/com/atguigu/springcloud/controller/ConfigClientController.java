@@ -25,4 +25,5 @@ public class ConfigClientController {
         return  "端口号："+serverPort+"远程配置"+configInfo;
     }
 
+
 }
