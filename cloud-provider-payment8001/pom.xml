@@ -13,6 +13,13 @@
 
     <dependencies>
 
+        <!-- 新增加 链路追踪 zipkin-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zipkin</artifactId>
+        </dependency>
+
+
         <!-- 新增加 eureka-client -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>

@@ -16,18 +16,24 @@ public class ReceiveMessageController {
     private String serverPort;
 
     @StreamListener(Sink.INPUT)
-    public void input(Message<String> message){
-
-      System.out.println("1号消费者获取信息："+message.getPayload()+"  端口号："+serverPort);
-
-
-
-
-
-
-
-   }
-
+     public void input(Message<String> message){
+         String payload = message.getPayload();
+         System.out.println(payload);
+     }
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

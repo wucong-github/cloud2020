@@ -107,6 +107,21 @@ public class OrderController {
 
     }
 
+
+    @GetMapping("/zipkin")
+    public String paymentZipkin() {
+
+        return restTemplate.getForObject(PAYMENT_URL + "/payment/zipkin", String.class);
+    }
+
+
+    @GetMapping("/zipkin2")
+    public String paymentZipkin2() {
+
+        return restTemplate.getForObject(   "http://CLOUD-STREAM-PROVIDER/zipkin2", String.class);
+
+    }
+
 }
 
 

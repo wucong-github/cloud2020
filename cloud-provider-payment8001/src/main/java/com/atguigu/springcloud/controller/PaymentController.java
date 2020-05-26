@@ -18,6 +18,7 @@ import java.util.concurrent.TimeUnit;
 @RequestMapping("/payment")
 public class PaymentController {
 
+
     @Autowired
     private PaymentService paymentService;
 
@@ -83,19 +84,21 @@ public class PaymentController {
 
     }
 
-
     @GetMapping(value = "/feign/timeout")
     public String paymentFeignTimeout() {
         try {
             TimeUnit.SECONDS.sleep(3);
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             return port;
         }
     }
 
+    // 新增一个 链路追踪 方法
+    @GetMapping(value = "/zipkin")
+    public String paymentZipkin() {
 
-
-
+        return "zipkin... 新增一个 链路追踪 方法";
+    }
 }

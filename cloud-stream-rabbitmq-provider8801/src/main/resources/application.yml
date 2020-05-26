@@ -4,6 +4,13 @@ server:
 spring:
   application:
     name: cloud-stream-provider
+  zipkin:
+    base-url: http://localhost:9411
+  sleuth:
+    sampler:
+      #采样取值介于 0到1之间，1则表示全部收集
+      probability: 1
+
   cloud:
     stream:
       binders: #在此处配置要绑定的rabbitmq的服务信息
@@ -31,4 +38,5 @@ eureka:
     lease-expiration-duration-in-seconds: 5 #如果超过5S间隔就注销节点 默认是90s
     instance-id: send-8801.com #在信息列表时显示主机名称
     prefer-ip-address: true #访问的路径变为IP地址
+
 

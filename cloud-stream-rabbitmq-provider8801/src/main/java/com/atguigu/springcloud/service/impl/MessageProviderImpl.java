@@ -1,6 +1,7 @@
 package com.atguigu.springcloud.service.impl;
 
 import com.atguigu.springcloud.service.MessageProvider;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.messaging.Source;
 import org.springframework.messaging.MessageChannel;
@@ -14,13 +15,14 @@ import java.util.UUID;
  * @EnableBinding 表明这是一个绑定器
  * Source.class   消息的生产者
  * MessageChannel  消息通道 output
- *
+ * <p>
  * send 消息发送方法
- *
  */
+
 @Component
 @EnableBinding(Source.class)
 public class MessageProviderImpl implements MessageProvider {
+
     @Resource
     private MessageChannel output;
     static  int i =0;
@@ -34,9 +36,6 @@ public class MessageProviderImpl implements MessageProvider {
         System.out.println("@EnableBinding .... MessageProviderImpl");
         return serial;
     }
-
-
-
-
-
 }
+
+
