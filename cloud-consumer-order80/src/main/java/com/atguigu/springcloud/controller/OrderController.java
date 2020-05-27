@@ -104,13 +104,18 @@ public class OrderController {
         // 轮询 访问
         return restTemplate.getForObject(uri + "/payment/lb", String.class);
 
-
     }
 
-
+    /**
+     * 80端口是服务的消费端，使用链路追踪，显示80端口的服务调用踪迹
+     *
+     * @return
+     */
     @GetMapping("/zipkin")
     public String paymentZipkin() {
-
+        //使用RestTemplate 要在config包中注入RestTemplate
+        //使用 @LoadBalanced标签进行负载均衡后，不能使用端口号访问，统一使用微服务名访问
+        // 先使用seleuth 可以使用spring进行追踪，可以使用
         return restTemplate.getForObject(PAYMENT_URL + "/payment/zipkin", String.class);
     }
 
@@ -118,7 +123,7 @@ public class OrderController {
     @GetMapping("/zipkin2")
     public String paymentZipkin2() {
 
-        return restTemplate.getForObject(   "http://CLOUD-STREAM-PROVIDER/zipkin2", String.class);
+        return restTemplate.getForObject("http://CLOUD-STREAM-PROVIDER/zipkin2", String.class);
 
     }
 

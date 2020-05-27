@@ -32,7 +32,7 @@ public class PaymentController {
     @GetMapping("/zipkin2")
     public String zipkin2(){
 
-        return "8801端口，发送消息";
+        return "8801端口，发送消息，发送到";
     }
 
 }
