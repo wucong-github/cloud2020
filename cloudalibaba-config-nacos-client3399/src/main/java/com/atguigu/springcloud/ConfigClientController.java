@@ -28,7 +28,11 @@ public class ConfigClientController {
         return configInfo;
     }
 
+    @GetMapping("/config/info2")
+    public String getConfigInfo2() {
 
+        return "读取到的相关远程配置："+configInfo;
+    }
 
 }
 

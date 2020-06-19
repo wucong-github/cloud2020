@@ -77,7 +77,7 @@ public class PaymentService {
 
     public String paymentCircuitBreaker_fallback(@PathVariable("id") Integer id) {
         // 这是一个方法
-        return "id 不能为负数,请稍后再试， o(╥﹏╥)o id: " + id;
+        return "id 不能为负数,请稍后再试， id: " + id;
     }
 
 
